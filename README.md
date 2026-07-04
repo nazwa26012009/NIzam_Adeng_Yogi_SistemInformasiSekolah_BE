@@ -1,1 +1,0 @@
-# NIzam_Adeng_Yogi_SistemInformasiSekolah_BE
