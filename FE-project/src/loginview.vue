@@ -42,7 +42,14 @@ const handleLogin = async () => {
   try {
     loading.value = true
     errorMsg.value = ''
-    const result = await login(username.value, nis.value, password.value)
+    const result = await login(
+      username.value.trim(),
+      nis.value.trim(),
+      password.value
+    )
+    if (!result?.token) {
+      throw new Error('Token session tidak diterima dari server')
+    }
     localStorage.setItem('token', result.token)
     localStorage.setItem('username', result.username)
     router.push('/dashboard')

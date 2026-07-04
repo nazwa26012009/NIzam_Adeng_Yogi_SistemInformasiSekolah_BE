@@ -10,6 +10,14 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     headers.Authorization = `Bearer ${token}`
   }
   const response = await fetch(`${API_BASE}${path}`, { ...options, headers })
+
+  if (response.status === 204) {
+    if (!response.ok) {
+      throw new Error('Request gagal')
+    }
+    return undefined
+  }
+
   const data = await response.json().catch(() => ({}))
   if (!response.ok) {
     throw new Error(data.message || 'Request gagal')

@@ -34,7 +34,11 @@ export const updateKelas = (id: number, data: Partial<Kelas>): Promise<Kelas> =>
 export const deleteKelas = (id: number): Promise<void> =>
   apiFetch(`/kelas/${id}`, { method: 'DELETE' })
 
-export const login = (username: string, nis: string, password: string) =>
+export const login = (
+  username: string,
+  nis: string,
+  password: string
+): Promise<{ token: string; username: string }> =>
   apiFetch('/auth/login', {
     method: 'POST',
     body: JSON.stringify({ username, nis, password })
